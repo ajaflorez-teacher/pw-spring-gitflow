@@ -1,0 +1,4 @@
+public class DiegoVasquez {
+private int id;
+private string nombre;
+}
