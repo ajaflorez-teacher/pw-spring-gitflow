@@ -1,0 +1,3 @@
+public class JuanFloresMoroco {
+	private String Juan;
+}
