@@ -1,1 +1,15 @@
 Programación Web
+
+Configurar el nombre:
+git config --global user.name "Juan Flores-Moroco"
+Configurar el email:
+git config --global user.email "ajaflorez.upc@gmail.com
+
+Para ver la lista de la configuración:
+git config --global --list
+
+Comando para realizar un commit
+git commit -m "first commit"
+
+comando para ver el historial de commits
+git log
