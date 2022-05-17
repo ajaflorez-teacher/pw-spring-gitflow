@@ -1,2 +1,3 @@
 public class JuanTorres {
+	private String nombre;
 }
