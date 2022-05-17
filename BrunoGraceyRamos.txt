@@ -1,0 +1,3 @@
+public class BrunoGraceyRamos {
+	private string id;
+}
