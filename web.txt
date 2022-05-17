@@ -13,3 +13,13 @@ git commit -m "first commit"
 
 comando para ver el historial de commits
 git log
+git log --stat
+git log --pretty=oneline
+git log --pretty=format:"%h %s" --graph
+
+Vincular el repositorio local con el remoto
+git remote add origin https://github.com/ajaflorez-teacher/pw-spring-gitflow.git
+
+Verificar con que repositorio remoto esta enlace el repositorio local
+git remote -v
+
