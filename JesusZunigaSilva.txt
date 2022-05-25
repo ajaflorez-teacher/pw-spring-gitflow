@@ -1,5 +1,5 @@
 public class JesusZunigaSilva {
 
-private 
+private String Jesus;
 
 }
