@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/base :: frag-head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="layout/base :: frag-header"></header>
+	<main>
+		<div class="card text-center">
+			<div class="card-header">Students</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Last name</th>
+							<th scope="col">First Name</th>
+							<th scope="col">Age</th>
+							<th scope="col">Career</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="student : ${students}">
+							<th scope="row" th:text=${student.id}></th>
+							<td th:text=${student.lastName}></td>
+							<td th:text=${student.firstName}></td>
+							<td th:text=${student.age}></td>
+							<td th:text=${student.career.name}></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="card-footer text-muted">University</div>
+		</div>
+	</main>
+	<footer th:replace="layout/base :: frag-footer"></footer>
+</body>
+</html>
