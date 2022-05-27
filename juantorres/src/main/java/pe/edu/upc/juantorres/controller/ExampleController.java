@@ -12,4 +12,11 @@ public class ExampleController {
 	public String ejemplo() {
 		return "example"; //aqui va el nombre que puse en el templates html
 	}
+	
+	@GetMapping("base") // esto es igual al hacer -> /ejemplo/base
+	public String base() {
+		return "layout/base";
+	}
+	
+	
 }
