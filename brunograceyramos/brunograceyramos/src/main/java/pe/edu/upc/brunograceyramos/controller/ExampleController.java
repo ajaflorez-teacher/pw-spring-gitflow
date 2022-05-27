@@ -1,4 +1,4 @@
-package pe.edu.upc.luismurguiamaldonado.controller;
+package pe.edu.upc.brunograceyramos.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/ejemplo")
 public class ExampleController {
-	
+
 	@GetMapping
-	public String ejemplo() {
+	public String example() {
 		return "example";
-	}
-	
-	@GetMapping("base")
-	public String base() {
-		return "layout/base";
 	}
 }
