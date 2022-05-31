@@ -12,4 +12,8 @@ public class ExampleController {
 	public String ejemplo() {
 		return "example";
 	}
+	@GetMapping("base")
+	public String base() {
+		return "Layout/base";
+	}
 }
