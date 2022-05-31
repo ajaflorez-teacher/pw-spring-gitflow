@@ -10,7 +10,15 @@
 <main>
 	
   <section>
-	<div class="card text-center">
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Student</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Library</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
 	  <div class="card-header">
 	    Students
 	  </div>
@@ -24,22 +32,27 @@
 		      <th scope="col">First name</th>
 		      <th scope="col">Age</th>
 		      <th scope="col">Career</th>
+		      <th scope="col"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr th:each="student : ${students}">
+		    <tr th:each="student : ${students}"> 
 		      <th scope="row" th:text="${student.id}">1</th>
 		      <td th:text="${student.lastName}">Mark</td>
 		      <td th:text="${student.firstName}">Otto</td>
 		      <td th:text="${student.age}">@mdo</td>
 		      <td th:text="${student.career.name}">@mdo</td>
+		      <td>
+			      <a class="btn btn-warning" href="#" role="button"><i class="fas fa-edit"></i></a>
+			      <a class="btn btn-danger" href="#" role="button"><i class="fas fa-minus"></i></a>
+		      </td>
 		    </tr>
 		  </tbody>
 		</table>
 	    
 	  </div>
 	  <div class="card-footer text-muted">
-	    University
+	    <a class="btn btn-primary" th:href="@{/students/new}" role="button"><i class="fas fa-plus"></i></a>
 	  </div>
 	</div>
   </section>
