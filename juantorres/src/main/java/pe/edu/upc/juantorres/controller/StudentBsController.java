@@ -19,108 +19,106 @@ import pe.edu.upc.juantorres.model.entity.Career;
 import pe.edu.upc.juantorres.model.entity.Student;
 
 @Controller
-@RequestMapping("/students")
-
-//esto es obligatorio para que se pueda guardar los elementos en la base de datos
-@SessionAttributes("{student}")//esto se crea porque este elemento estoy creando en el html, y luego de agregar uno nuevo desde el html, se tiene que regresar al controller para guardar
-public class StudentController {
+@RequestMapping("/students-bs")	// GET y POST
+@SessionAttributes("{student}")
+public class StudentBsController {
 	
 	@Autowired
 	private StudentService studentService;
 	
 	@Autowired
-	private CareerService careerService;
-	
-	@GetMapping
-	public String listStudents(Model model) {//el modelo ayuda en envia informacion al html
+	private CareerService careerService; 
+
+	@GetMapping		//	/students
+	public String listStudents(Model model) {
+		
 		try {
-			List<Student> students=studentService.getAll();
+			List<Student> students = studentService.getAll();
 			model.addAttribute("students", students);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "students/list-students";
+		
+		return "students-bs/list-students";
 	}
 	
-	@GetMapping("new") // esto es como hacer -> /students/new
+	@GetMapping("new")	//	/students/new
 	public String newStudent(Model model) {
-		Student student =new Student();
+		Student student = new Student();
 		model.addAttribute("student", student);
 		try {
-			List<Career> careers=careerService.getAll();
+			List<Career> careers = careerService.getAll();
 			model.addAttribute("careers", careers);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "students/new-student";
+		return "students-bs/new-student";
 	}
 	
-	@PostMapping("savenew") // esto es lo mismo que -> /students/savenew
-	public String saveStudent(Model model, @ModelAttribute("student") Student student) {//el modelattribute asegura de guardar el elemento
+	@PostMapping("savenew")	//	/students/savenew
+	public String saveStudent(Model model, @ModelAttribute("student") Student student) {
 		try {
 			Student studentSaved = studentService.create(student);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/students";//el redirect es para que cargue la pagina despues de realizar algo(por ejemplo agregar un estudiante)
+		return "redirect:/students-bs";
 	}
 	
-	@GetMapping("{id}/edit") // esto es como hacer -> /students/1/edit
-	public String editStudent(Model model,@PathVariable("id") Integer id) {//pathvariable se refiere al id
+	@GetMapping("{id}/edit")	//	/students/1/edit
+	public String editStudent(Model model, @PathVariable("id") Integer id) {				
 		try {
-			if(studentService.existsById(id)) {
+			if (studentService.existsById(id)) {
 				Optional<Student> optional = studentService.findById(id);
 				model.addAttribute("student", optional.get());
 				List<Career> careers = careerService.getAll();
 				model.addAttribute("careers", careers);
-			}
-			else {
-				return "redirect:/students";
+			} else {
+				return "redirect:/students-bs";
 			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "students/edit-student";
+		return "students-bs/edit-student";
 	}
 	
-	@PostMapping("{id}/update") // esto es lo mismo que -> /students/1->id/update
-	public String updateStudent(Model model, @ModelAttribute("student") Student student, @PathVariable("id") Integer id) {
+	@PostMapping("{id}/update")	//	/students/1/update
+	public String updateStudent(Model model, @ModelAttribute("student") Student student, 
+			@PathVariable("id") Integer id) {
 		try {
-			if(studentService.existsById(id)) {
+			if (studentService.existsById(id)) {
 				studentService.update(student);
-			}
-			else {
-				return "redirect:/students";
+			} else {
+				return "redirect:/students-bs";
 			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/students";
+		return "redirect:/students-bs";
 	}
 	
-	@GetMapping("{id}/del") // esto es lo mismo que -> /students/1->id/del
-	public String deleteStudent(Model model,  @PathVariable("id") Integer id) {
+	@GetMapping("{id}/del")	//	/students/1/del
+	public String deleteStudent(Model model, @PathVariable("id") Integer id) {
 		try {
-			if(studentService.existsById(id)) {
+			if (studentService.existsById(id)) {
 				studentService.deleteById(id);
-			}
-			else {
-				return "redirect:/students";
+			} else {
+				return "redirect:/students-bs";
 			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/students";
+		return "redirect:/students-bs";
 	}
 	
-
+	
 }
