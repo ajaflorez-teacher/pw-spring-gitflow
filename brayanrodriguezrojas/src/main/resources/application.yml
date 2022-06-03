@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/StartUpElecDS
-    username: <postgres>
-    password: <diosteama>
+    url: jdbc:postgresql://localhost:5432/university
+    username: postgres
+    password: diosteama
   jpa:
     database: postgresql
     hibernate:
