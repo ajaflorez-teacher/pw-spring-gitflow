@@ -1,5 +1,0 @@
-public class RodrigoNoleBerrocal{
-
-	private String RodrigoNoleBerrocal;
-
-}
