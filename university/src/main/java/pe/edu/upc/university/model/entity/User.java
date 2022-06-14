@@ -41,6 +41,13 @@ public class User {
 	@Column(name = "enable")
 	private boolean enable;
 	
+	// Atributos para vincular con los Segmentos Objetivos
+	@Column(name = "segment", nullable = false)
+	private Segment segment;
+	
+	@Column(name = "id_segment", nullable = false)
+	private Integer idSegment;
+	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Authority> authorities;
 	
@@ -48,13 +55,15 @@ public class User {
 		this.enable = true;
 		this.authorities = new ArrayList<>();
 	}
-	public User( String username, String password ) {
+	public User(@NotNull @NotBlank @Size(max = 30) String username, @NotNull @NotBlank @Size(max = 60) String password,
+			Segment segment, Integer idSegment) {
 		this.username = username;
 		this.password = password;
+		this.segment = segment;
+		this.idSegment = idSegment;
 		this.enable = true;
 		this.authorities = new ArrayList<>();
 	}
-	
 	// Add ROLE or ACCESS to user
 	public void addAuthority( String auth ) {
 		Authority authority = new Authority();
@@ -92,6 +101,18 @@ public class User {
 	}
 	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
+	}
+	public Segment getSegment() {
+		return segment;
+	}
+	public void setSegment(Segment segment) {
+		this.segment = segment;
+	}
+	public Integer getIdSegment() {
+		return idSegment;
+	}
+	public void setIdSegment(Integer idSegment) {
+		this.idSegment = idSegment;
 	}
 	
 
