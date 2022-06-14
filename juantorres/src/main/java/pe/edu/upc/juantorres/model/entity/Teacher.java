@@ -8,15 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "students", 
-	indexes = {@Index(columnList = "last_name, first_name", name = "students_index_last_name_first_name")})
-public class Student {
+@Table(name = "teachers", 
+	indexes = {@Index(columnList = "last_name, first_name", name = "teachers_index_last_name_first_name")})
+public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -27,15 +25,8 @@ public class Student {
 	@Column(name = "first_name", length = 35, nullable = false)	
 	private String firstName;
 	
-	@Column(name = "age")
-	private Integer age;
-	
-	@ManyToOne
-	@JoinColumn(name = "career_id")
-	private Career career;	// career_id
-	
-	@OneToMany(mappedBy = "student")
-	private List<Enrollment> enrollments;
+	@OneToMany(mappedBy = "teacher")
+	private List<Course> courses;
 
 	public Integer getId() {
 		return id;
@@ -61,29 +52,16 @@ public class Student {
 		this.firstName = firstName;
 	}
 
-	public Integer getAge() {
-		return age;
+	public List<Course> getCourses() {
+		return courses;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public Career getCareer() {
-		return career;
-	}
-
-	public void setCareer(Career career) {
-		this.career = career;
-	}
-
-	public List<Enrollment> getEnrollments() {
-		return enrollments;
-	}
-
-	public void setEnrollments(List<Enrollment> enrollments) {
-		this.enrollments = enrollments;
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 	
+	
+
 	
 }	
+

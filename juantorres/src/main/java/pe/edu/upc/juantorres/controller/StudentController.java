@@ -1,12 +1,14 @@
 package pe.edu.upc.juantorres.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -56,7 +58,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("savenew") // esto es lo mismo que -> /students/savenew
-	public String saveStudent(Model model, @ModelAttribute("student") Student student) {//el modelattribute asegura de guardar el elemento
+	public String saveStudent(Model model, @ModelAttribute("student") Student student) {//el modelattribute asegura de guardar el elemento y solo va en los que son post
 		try {
 			Student studentSaved = studentService.create(student);
 		} catch (Exception e) {
@@ -64,6 +66,60 @@ public class StudentController {
 			e.printStackTrace();
 		}
 		return "redirect:/students";//el redirect es para que cargue la pagina despues de realizar algo(por ejemplo agregar un estudiante)
+	}
+	
+	@GetMapping("{id}/edit") // esto es como hacer -> /students/1/edit
+	public String editStudent(Model model,@PathVariable("id") Integer id) {//pathvariable se refiere al id, o sea para capturar el valor que viene
+		try {
+			if(studentService.existsById(id)) {
+				Optional<Student> optional = studentService.findById(id);//esto es para buscar el elemento con ese id
+				model.addAttribute("student", optional.get());//se pone get porque el optional es un contenedor y de ese contenedor tengo que sacar el elemento
+				List<Career> careers = careerService.getAll();
+				model.addAttribute("careers", careers);
+			}
+			else {
+				return "redirect:/students";
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "students/edit-student";
+	}
+	
+	@PostMapping("{id}/update") // esto es lo mismo que -> /students/1->id/update
+	public String updateStudent(Model model, @ModelAttribute("student") Student student, @PathVariable("id") Integer id) {
+		try {
+			if(studentService.existsById(id)) {//esot es para ver si existe el id
+				studentService.update(student);
+			}
+			else {
+				return "redirect:/students";
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/students";
+	}
+	
+	@GetMapping("{id}/del") // esto es lo mismo que -> /students/1->id/del
+	public String deleteStudent(Model model,  @PathVariable("id") Integer id) {
+		try {
+			if(studentService.existsById(id)) {
+				studentService.deleteById(id);
+			}
+			else {
+				return "redirect:/students";
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/students";
 	}
 	
 
