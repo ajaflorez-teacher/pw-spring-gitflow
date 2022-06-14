@@ -58,7 +58,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("savenew") // esto es lo mismo que -> /students/savenew
-	public String saveStudent(Model model, @ModelAttribute("student") Student student) {//el modelattribute asegura de guardar el elemento
+	public String saveStudent(Model model, @ModelAttribute("student") Student student) {//el modelattribute asegura de guardar el elemento y solo va en los que son post
 		try {
 			Student studentSaved = studentService.create(student);
 		} catch (Exception e) {
@@ -69,11 +69,11 @@ public class StudentController {
 	}
 	
 	@GetMapping("{id}/edit") // esto es como hacer -> /students/1/edit
-	public String editStudent(Model model,@PathVariable("id") Integer id) {//pathvariable se refiere al id
+	public String editStudent(Model model,@PathVariable("id") Integer id) {//pathvariable se refiere al id, o sea para capturar el valor que viene
 		try {
 			if(studentService.existsById(id)) {
-				Optional<Student> optional = studentService.findById(id);
-				model.addAttribute("student", optional.get());
+				Optional<Student> optional = studentService.findById(id);//esto es para buscar el elemento con ese id
+				model.addAttribute("student", optional.get());//se pone get porque el optional es un contenedor y de ese contenedor tengo que sacar el elemento
 				List<Career> careers = careerService.getAll();
 				model.addAttribute("careers", careers);
 			}
@@ -91,7 +91,7 @@ public class StudentController {
 	@PostMapping("{id}/update") // esto es lo mismo que -> /students/1->id/update
 	public String updateStudent(Model model, @ModelAttribute("student") Student student, @PathVariable("id") Integer id) {
 		try {
-			if(studentService.existsById(id)) {
+			if(studentService.existsById(id)) {//esot es para ver si existe el id
 				studentService.update(student);
 			}
 			else {

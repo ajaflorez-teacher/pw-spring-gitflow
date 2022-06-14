@@ -1,5 +1,7 @@
 package pe.edu.upc.juantorres.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +33,9 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(name = "career_id")
 	private Career career;	// career_id
+	
+	@OneToMany(mappedBy = "student")
+	private List<Enrollment> enrollments;
 
 	public Integer getId() {
 		return id;
@@ -70,5 +76,14 @@ public class Student {
 	public void setCareer(Career career) {
 		this.career = career;
 	}
+
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
+	
 	
 }	
