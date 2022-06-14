@@ -1,10 +1,10 @@
-package pe.edu.upc.brianlinan;
+package pe.edu.upc.university;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BrianlinanApplicationTests {
+class UniversityApplicationTests {
 
 	@Test
 	void contextLoads() {
