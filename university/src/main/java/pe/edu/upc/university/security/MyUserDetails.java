@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import pe.edu.upc.university.model.entity.Segment;
 import pe.edu.upc.university.model.entity.User;
 
 public class MyUserDetails implements UserDetails {
@@ -62,6 +63,14 @@ public class MyUserDetails implements UserDetails {
 		// TODO Auto-generated method stub
 		return this.user.isEnable();
 	}
+	
 	// Add new gets for get data from user
-
+	public Segment getSegment() {
+		return this.user.getSegment();
+	}
+	public Integer getIdSegment() {
+		return this.user.getIdSegment();
+	}
+	
 }
+

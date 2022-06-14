@@ -41,8 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		// Aqui realiza la configuración de los permisos
 				.antMatchers("/").permitAll()
-				.antMatchers("/students").hasRole("ADMINISTRATOR")
-				.antMatchers("/students/**/edit").hasAnyAuthority("ACCESS_EDIT_MATRI", "ACCESS_ALL")
+				.antMatchers("/students/**").hasRole("ADMINISTRATOR")
+				.antMatchers("/students-bs").hasRole("ADMINISTRATOR")
+				.antMatchers("/students-bs/**/edit").hasAnyAuthority("ACCESS_EDIT_MATRI", "ACCESS_ALL")
 			.and()
 				.formLogin();
 	}
