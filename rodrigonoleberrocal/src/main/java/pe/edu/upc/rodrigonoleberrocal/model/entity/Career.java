@@ -1,4 +1,4 @@
-package pe.edu.upc.rodrigonoleberrocal.model.entity;
+package pe.edu.upc.university.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
