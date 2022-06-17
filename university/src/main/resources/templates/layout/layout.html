@@ -33,7 +33,7 @@
 	          <a class="nav-link" aria-current="page" href="#"><i class="fas fa-id-card"></i> Courses</a>
 	        </li>
 	        <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
-	          <a class="nav-link" aria-current="page" href="#"><i class="fas fa-school"></i> Enrollment</a>
+	          <a class="nav-link" aria-current="page" th:href="@{/enrollments}"><i class="fas fa-school"></i> Enrollment</a>
 	        </li>
 	        <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
 	          <a class="nav-link" aria-current="page" href="#"><i class="fas fa-school"></i> Withdraw</a>

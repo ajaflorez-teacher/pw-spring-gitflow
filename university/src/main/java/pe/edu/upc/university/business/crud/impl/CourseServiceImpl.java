@@ -18,7 +18,7 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public JpaRepository<Course, String> getJpaRepository() {
-		return null;
+		return this.courseRepository;
 	}
 
 	@Override
