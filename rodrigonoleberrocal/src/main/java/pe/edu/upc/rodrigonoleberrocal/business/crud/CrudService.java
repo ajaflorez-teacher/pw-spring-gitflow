@@ -1,12 +1,10 @@
-package pe.edu.upc.rodrigonoleberrocal.business.crud;
+package pe.edu.upc.university.business.crud;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 public interface CrudService<T, ID> {
 	
@@ -22,10 +20,12 @@ public interface CrudService<T, ID> {
 		return getJpaRepository().save(entity);
 	}
 	
+	@Transactional(readOnly = true)
 	default Optional<T> findById(ID id) throws Exception {
 		return getJpaRepository().findById(id);
 	}
 	
+	@Transactional(readOnly = true)
 	default List<T> getAll() throws Exception {
 		return getJpaRepository().findAll();
 	}
@@ -35,5 +35,9 @@ public interface CrudService<T, ID> {
 		getJpaRepository().deleteById(id);
 	}
 	
+	@Transactional(readOnly = true)
+	default boolean existsById(ID id) throws Exception {
+		return getJpaRepository().existsById(id);
+	}
 	
 }
