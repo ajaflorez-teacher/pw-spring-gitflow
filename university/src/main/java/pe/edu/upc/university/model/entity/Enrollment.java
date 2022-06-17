@@ -27,13 +27,13 @@ public class Enrollment {
 	@Column(name = "section", length = 4, nullable = false)	
 	private String section;
 	
-	@Column(name = "grade_work")
+	@Column(name = "grade_work", nullable = true)
 	private float gradeWork;
 	
-	@Column(name = "grade_exam")
+	@Column(name = "grade_exam", nullable = true)
 	private float gradeExam;
 	
-	@Column(name = "grade_final")
+	@Column(name = "grade_final", nullable = true)
 	private float gradeFinal;
 
 	public Integer getId() {

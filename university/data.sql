@@ -8,3 +8,9 @@ INSERT INTO students(id, last_name, first_name, age, career_id) VALUES
 	(1, 'Chura Molina', 'Ricardo', 58, 1),
 	(2, 'Rosales Durand', 'Isabel', 20, 2),
 	(3, 'Santander Lucas', 'Pedro', 21, 2);
+	
+INSERT INTO courses (id, name, level, credit, teacher_id) VALUES
+('SI650', 'PROGRAMACION EN WEB', 6, 4, 1),
+('SI385', 'IHC Y TECNOLOGIAS MOVILES', 4, 3, 1),
+('cc123', 'PROGRAMACION I', 5, 1, 2),
+('SI397', 'ESPECIFICACIÓN DE REQUISITOS', 3, 3, 2);
