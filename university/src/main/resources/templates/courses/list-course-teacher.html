@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Course for Teacher</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+  	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Course for teacher</li>
+	  </ol>
+	</nav>
+	
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    List course for teacher
+	  </div>
+	  <div class="card-body">
+	  
+	    <div class="card-footer text-muted">
+		    <a class="btn btn-primary" th:href="@{/courses-teacher/new-course}" role="button"> <i class="fas fa-plus"></i> Course for Teacher</a>
+		</div>
+	    
+	    <div class="row">
+		  <div th:each="course : ${courses}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body">
+		        <h5 class="card-title" th:text="${course.name}"> course</h5>
+			    <h6 class="card-subtitle mb-2 text-muted" th:text="${course.id}">section</h6>
+		        <p class="card-text"> 
+		        	The level is in <span th:text="${course.level}"></span> level.
+		        	The credit is <span th:text="${course.credit}"></span>. 
+		        </p>
+		        <a class="btn btn-warning" th:href="@{'/courses-teacher/' + ${course.id} + '/edit'}" role="button"> <i class="fas fa-edit"></i> Modify data</a>
+		        <a class="btn btn-info" th:href="@{'/enrollments-bs/' + ${course.id} + '/list-students'}" role="button"> <i class="fas fa-user-graduate"></i> List students</a>
+		      </div>
+		    </div>
+		  </div>
+	    
+	  </div>
+	  
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
