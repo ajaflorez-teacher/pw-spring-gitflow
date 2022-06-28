@@ -35,6 +35,7 @@ public class UserAuthentication {
 			return true;
 		}
 	}
+	
 	public void getSegment(Model model) {
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
